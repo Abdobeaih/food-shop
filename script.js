@@ -96,6 +96,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkoutModal = document.querySelector('.checkout-modal');
     const closeCheckout = document.querySelector('.close-checkout');
     const checkoutForm = document.querySelector('.checkout-form');
+    const navLinks = document.querySelectorAll('nav ul li a');
+    const sections = document.querySelectorAll('section');
 
     // Shopping cart
     let cart = [];
@@ -228,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function removeItem(e) {
         const cartItem = e.target.closest('.cart-item');
         const itemId = parseInt(cartItem.dataset.id);
-        
+
         cart = cart.filter(item => item.id !== itemId);
         updateCart();
     }
@@ -249,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle checkout form submission
     function handleCheckout(e) {
         e.preventDefault();
-        
+
         if (cart.length === 0) {
             alert('Your cart is empty!');
             return;
@@ -266,15 +268,34 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         console.log('Order submitted:', formData);
-        
+
         // Show confirmation
         alert(`Thank you for your order! Your total is $${formData.total.toFixed(2)}. Your food will be delivered soon.`);
-        
+
         // Reset cart and close modals
         cart = [];
         updateCart();
         checkoutModal.style.display = 'none';
         checkoutForm.reset();
+    }
+
+    // Scroll spy logic
+    function scrollSpy() {
+        let current = "";
+
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= sectionTop - 100) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (current && link.getAttribute("href").includes(current)) {
+                link.classList.add("active");
+            }
+        });
     }
 
     // Initialize the app
@@ -283,6 +304,7 @@ document.addEventListener('DOMContentLoaded', function() {
         filterMenu();
 
         // Event listeners
+        window.addEventListener('scroll', scrollSpy);
         cartIcon.addEventListener('click', toggleCart);
         closeCart.addEventListener('click', toggleCart);
         checkoutBtn.addEventListener('click', toggleCheckout);
@@ -298,6 +320,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 toggleCheckout();
             }
         });
+
+        // Run scroll spy on load
+        scrollSpy();
     }
 
     init();

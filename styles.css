@@ -1,4 +1,8 @@
 /* Global Styles */
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -29,11 +33,17 @@ body {
     cursor: pointer;
     text-decoration: none;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .btn:hover {
     background-color: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: scale(0.98);
 }
 
 section {
@@ -86,11 +96,15 @@ nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a.active {
     color: #ff6b6b;
+    border-bottom: 2px solid #ff6b6b;
 }
 
 .cart-icon {
@@ -98,6 +112,11 @@ nav ul li a:hover {
     cursor: pointer;
     font-size: 1.5rem;
     color: #333;
+    transition: color 0.3s ease;
+}
+
+.cart-icon:hover {
+    color: #ff6b6b;
 }
 
 .cart-count {
@@ -155,12 +174,20 @@ nav ul li a:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #ccc;
 }
 
 .filter-btn.active {
     background-color: #ff6b6b;
     color: white;
+}
+
+.filter-btn:active {
+    transform: scale(0.98);
 }
 
 .menu-items {
@@ -174,11 +201,12 @@ nav ul li a:hover {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    transition: all 0.3s ease;
 }
 
 .menu-item:hover {
     transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .item-img {
@@ -221,11 +249,16 @@ nav ul li a:hover {
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .add-to-cart:hover {
     background-color: #ff5252;
+    transform: scale(1.05);
+}
+
+.add-to-cart:active {
+    transform: scale(0.95);
 }
 
 /* About Section */
@@ -273,6 +306,14 @@ nav ul li a:hover {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
 }
 
 .contact-form textarea {
@@ -312,6 +353,11 @@ nav ul li a:hover {
     font-size: 1.5rem;
     cursor: pointer;
     color: #666;
+    transition: color 0.3s ease;
+}
+
+.close-cart:hover {
+    color: #ff6b6b;
 }
 
 .cart-items {
@@ -363,6 +409,15 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #ccc;
+}
+
+.quantity-btn:active {
+    transform: scale(0.9);
 }
 
 .quantity {
@@ -373,6 +428,11 @@ nav ul li a:hover {
     color: #ff6b6b;
     cursor: pointer;
     margin-left: 15px;
+    transition: transform 0.3s ease;
+}
+
+.remove-item:hover {
+    transform: scale(1.2);
 }
 
 .cart-total {
@@ -414,6 +474,11 @@ nav ul li a:hover {
     font-size: 1.5rem;
     cursor: pointer;
     color: #666;
+    transition: color 0.3s ease;
+}
+
+.close-checkout:hover {
+    color: #ff6b6b;
 }
 
 .checkout-form {
@@ -438,6 +503,15 @@ nav ul li a:hover {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
 }
 
 /* Footer */
@@ -456,11 +530,12 @@ footer {
     color: white;
     margin: 0 10px;
     font-size: 1.5rem;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .social-icons a:hover {
     color: #ff6b6b;
+    transform: translateY(-5px);
 }
 
 /* Responsive Styles */
